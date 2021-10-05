@@ -16,20 +16,6 @@ router.get('/', withAuth, (req, res) => {
       'body',
 
     ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['comment_text'],
-        include: {
-          model: User,
-          attributes: ['username'],
-        },
-      },
-      {
-        model: User,
-        attributes: ['username'],
-      },
-    ],
   })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));
@@ -44,27 +30,23 @@ router.get('/', withAuth, (req, res) => {
 router.get('/edit/:id', withAuth, (req, res) => {
   Post.findByPk(req.params.id, {
     attributes: [
-      'id',
-      'car_maker',
-      'car_model',
-      'car_body',
-      'review',
-      'created_at',
+      'title',
+      'body',
     ],
-    include: [
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username'],
-        },
-      },
-      {
-        model: User,
-        attributes: ['username'],
-      },
-    ],
+    // include: [
+    //   {
+    //     model: Comment,
+    //     attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+    //     include: {
+    //       model: User,
+    //       attributes: ['username'],
+    //     },
+    //   },
+    //   {
+    //     model: User,
+    //     attributes: ['username'],
+    //   },
+    // ],
   })
     .then((dbPostData) => {
       if (dbPostData) {
