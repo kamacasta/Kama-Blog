@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
     attributes: [
       'title',
       'body',
+      'created_at',
     ],
   })
     .then((dbPostData) => res.json(dbPostData))
@@ -27,6 +28,7 @@ router.get('/:id', (req, res) => {
     attributes: [
       'title',
       'body',
+      'created_at',
     ],
   })
     .then((dbPostData) => {
@@ -45,8 +47,8 @@ router.get('/:id', (req, res) => {
 router.post('/', withAuth, (req, res) => {
   console.log(req.body, req.file);
   Post.create({
-    title: req.body.post-title,
-    body: req.body.post-blog,
+    title: req.body.title,
+    body: req.body.blog,
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {
@@ -58,7 +60,7 @@ router.post('/', withAuth, (req, res) => {
 router.put('/:id', withAuth, (req, res) => {
   Post.update(
     {
-      review: req.body.review,
+      review: req.body.body,
     },
     {
       where: {
