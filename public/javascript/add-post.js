@@ -8,8 +8,8 @@ async function newFormHandler(event) {
 
 
   const formData = new FormData();
-  formData.append('post-title', title);
-  formData.append('post-blog', body);
+  formData.append('title', title);
+  formData.append('blog', body);
 
   console.log(formData);
 

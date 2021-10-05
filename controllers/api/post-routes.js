@@ -1,10 +1,7 @@
 const router = require('express').Router();
-//sequelize isnt called any where, dont think its needed.
-//const sequelize = require('../../config/connection');
-const { Post, User, Comment } = require('../../models');
+const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
-const path = require('path');
-const upload = require('multer')({ dest: path.join(__dirname, '../../public/images/') });
+
 
 // get all users
 router.get('/', (req, res) => {
